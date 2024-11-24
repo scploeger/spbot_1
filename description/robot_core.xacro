@@ -60,7 +60,7 @@
     <joint name = "left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link = "left_wheel"/>
-        <origin xyz="0 0.1 -0.035" rpy="-${pi/2} 0 0"/> <!-- The left wheel is 0.1m left and 0.035m below the base link origin, and rotated to be on its side-->
+        <origin xyz="0 0.095 -0.035" rpy="-${pi/2} 0 0"/> <!-- The left wheel is 0.1m left and 0.035m below the base link origin, and rotated to be on its side-->
         <axis xyz="0 0 1"/> <!-- Forward rotation is positive around z axis-->
     </joint>
 

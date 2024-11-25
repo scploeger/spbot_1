@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+    <!-- Create the lidar joint -->
+    <joint name="laser_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link ="laser_frame"/>
+        <origin xyz="0.12 0 0.13" rpy="0 0 0"/> <!--The Lidar is 12cm in front of the chassis origin and 13 cm up-->
+    </joint>
+
+    <!-- Create the lidar frame -->
+    <link name="laser_frame" type="fixed">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0325" length="0.03"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.034" length="0.025"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.025" radius="0.034">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <!-- A Gazebo tag associated with the laser frame link -->
+    <gazebo reference="laser_frame">
+        <material>Gazebo/Black</material>
+
+        <sensor name="laser" type="ray"> <!-- A simulated Ray sensor in Gazebo -->
+            <pose> 0 0 0 0 0 0 </pose> <!-- Sensor is centred in link -->
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray> <!-- Parameters for the sensor -->
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.15</min>
+                    <max>12</max>
+                </range>
+            </ray>
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so"> <!-- How we get Gazebo to interact with things outside gazebo (Plugins)-->
+                <ros>
+                    <argument>~/out:=scan</argument> <!-- The Topic we want to publish to-->
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type> <!-- The type of message we want to publish-->
+                <frame_name>laser_frame</frame_name> <!-- What frame name to put in laser scan mesage -->
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+
+</robot>

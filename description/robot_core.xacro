@@ -19,6 +19,10 @@
         <color rgba="0 0 0 1"/>
     </material>
 
+    <material name="green">
+        <color rgba="0 1 0 1"/>
+    </material>
+
     <!-- BASE LINK-->
     <!-- base link origin centre point between two wheels -->
     <link name="base_link">

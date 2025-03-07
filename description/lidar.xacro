@@ -32,7 +32,7 @@
 
         <sensor name="laser" type="ray"> <!-- A simulated Ray sensor in Gazebo -->
             <pose> 0 0 0 0 0 0 </pose> <!-- Sensor is centred in link -->
-            <visualize>true</visualize>
+            <visualize>false</visualize>
             <update_rate>10</update_rate>
             <ray> <!-- Parameters for the sensor -->
                 <scan>
@@ -47,7 +47,7 @@
                     <max>12</max>
                 </range>
             </ray>
-            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so"> <!-- How we get Gazebo to interact with things outside gazebo (Plugins)-->
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so"> <!-- How we get Gazebo to interact with things outside gazebo (Plugins) Here: https://docs.ros.org/en/rolling/p/gazebo_plugins/generated/file__tmp_ws_src_gazebo_ros_pkgs_gazebo_plugins_include_gazebo_plugins_gazebo_ros_ray_sensor.hpp.html#file-tmp-ws-src-gazebo-ros-pkgs-gazebo-plugins-include-gazebo-plugins-gazebo-ros-ray-sensor-hpp-->
                 <ros>
                     <argument>~/out:=scan</argument> <!-- The Topic we want to publish to-->
                 </ros>

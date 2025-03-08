@@ -47,7 +47,7 @@
                     <max>12</max>
                 </range>
             </ray>
-            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so"> <!-- How we get Gazebo to interact with things outside gazebo (Plugins) Here: https://docs.ros.org/en/rolling/p/gazebo_plugins/generated/file__tmp_ws_src_gazebo_ros_pkgs_gazebo_plugins_include_gazebo_plugins_gazebo_ros_ray_sensor.hpp.html#file-tmp-ws-src-gazebo-ros-pkgs-gazebo-plugins-include-gazebo-plugins-gazebo-ros-ray-sensor-hpp-->
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
                     <argument>~/out:=scan</argument> <!-- The Topic we want to publish to-->
                 </ros>

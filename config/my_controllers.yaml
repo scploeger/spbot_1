@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 30
-    use_sim_time: true
+    # use_sim_time: true # commented out: we don't want to use sim time on the real robot
 
     diff_cont:
       type: diff_drive_controller/DiffDriveController

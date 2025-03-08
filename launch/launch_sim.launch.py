@@ -36,12 +36,25 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'spbot_1'],
                         output='screen')
+    
+    # after we spawn the robot, we want to start the controller manager for diff_cont and joint_broad
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_cont"],
+    )
 
-
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
 
     # Launch rsp, gazebo, spawn the robot
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
+        diff_drive_spawner,
+        joint_broad_spawner
     ])

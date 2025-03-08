@@ -19,7 +19,7 @@ def generate_launch_description():
 
     package_name='spbot_1'
     
-    use_ros2_control = LaunchConfiguration('use_ros2_control')
+    use_ros2_control = LaunchConfiguration('use_ros2_control', default='true')
 
     # launch robot state publisher
     rsp = IncludeLaunchDescription(

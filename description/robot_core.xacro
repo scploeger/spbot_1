@@ -30,7 +30,7 @@
     </link>
 
     <!-- CHASSIS LINK -->
-    <joint name="chassis joint" type="fixed">
+    <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis" />
         <origin xyz ="-0.045 0 0"/>

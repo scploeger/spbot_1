@@ -30,6 +30,7 @@
     </link>
 
     <!-- BASE_FOOTPRINT LINK -->
+    <!-- Some nodes expect a base_footprint frame which should be the same as base_link except sitting on the floor. I just made it equal to base_link -->
 
     <joint name="base_footprint_joint" type="fixed">
         <parent link="base_link"/>

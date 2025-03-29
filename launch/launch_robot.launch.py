@@ -93,8 +93,8 @@ def generate_launch_description():
     # Launch rsp, gazebo, spawn the robot
     return LaunchDescription([
         rsp,
-        twist_mux,
-        joystick,
+        # twist_mux,
+        # joystick,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner

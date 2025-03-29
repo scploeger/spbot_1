@@ -10,7 +10,8 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
 
     joy_params = os.path.join(get_package_share_directory('spbot_1'),'config','joystick.yaml')
-
+    mux_params = os.path.join(get_package_share_directory('spbot_1'),'config','twist_mux.yaml')
+    
     joy_node = Node(
             package='joy',
             executable='joy_node',
@@ -24,6 +25,15 @@ def generate_launch_description():
             parameters=[joy_params, {'use_sim_time': use_sim_time}],
             remappings=[('/cmd_vel','/cmd_vel_joy')]
          )
+    
+    # Twist Mux node (included in the launch file now)
+    twist_mux_node = Node(
+        package='twist_mux',
+        executable='twist_mux',
+        name='twist_mux',
+        parameters=[mux_params, {'use_sim_time': use_sim_time}],
+        remappings=[('cmd_vel_out', 'diff_cont/cmd_vel_unstamped')]
+    )
 
     # twist_stamper = Node(
     #         package='twist_stamper',
@@ -51,5 +61,6 @@ def generate_launch_description():
             description='Use sim time if true'),
         joy_node,
         teleop_node,
+        twist_mux_node
         # twist_stamper       
     ])

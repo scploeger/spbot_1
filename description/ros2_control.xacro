@@ -4,7 +4,8 @@
     <xacro:unless value="$(arg sim_mode)">
         <ros2_control name="RealRobot" type="system">
             <hardware>
-                <plugin>diffdrive_arduino/DiffDriveArduinoHardware</plugin> <!-- Our own plugin -->
+                <!-- <plugin>diffdrive_arduino/DiffDriveArduinoHardware</plugin>  Our own plugin -->
+                <plugin>spbot_diffdrive/SPBotDiffDriveHardware</plugin> <!-- Our own plugin -->
                 <!--Parameters for the hardware interface-->
                 <param name="left_wheel_name">left_wheel_joint</param>
                 <param name="right_wheel_name">right_wheel_joint</param>

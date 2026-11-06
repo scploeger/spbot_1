@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="led_control">
+  
+  <!-- Left LED Light -->
+  <joint name="led_light_left_joint" type="fixed">
+    <!-- Attach to camera_link so it’s offset from the camera -->
+    <parent link="camera_link"/>
+    <child link="led_light_left"/>
+    <!-- Offset 1cm to the left (positive y) -->
+    <origin xyz="0 0.01 0" rpy="0 0 0"/>
+  </joint>
+  
+  <link name="led_light_left">
+    <visual>
+      <geometry>
+        <!-- Box dimensions: 3cm (x), 4mm (y), 5cm (z) -->
+        <box size="0.03 0.004 0.05"/>
+      </geometry>
+      <!-- LED initially off (black) -->
+      <material name="led_off">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  
+  <!-- Gazebo tag for left LED -->
+  <gazebo reference="led_light_left">
+    <plugin name="led_left_controller" filename="libgazebo_ros_led.so">
+      <frame_name>led_light_left</frame_name>
+      <joy_topic>/joy</joy_topic>
+      <toggle_button>0</toggle_button>
+      <initial_state>false</initial_state>
+    </plugin>
+  </gazebo>
+  
+  <!-- Right LED Light -->
+  <joint name="led_light_right_joint" type="fixed">
+    <!-- Attach to camera_link -->
+    <parent link="camera_link"/>
+    <child link="led_light_right"/>
+    <!-- Offset 1cm to the right (negative y) -->
+    <origin xyz="0 -0.01 0" rpy="0 0 0"/>
+  </joint>
+  
+  <link name="led_light_right">
+    <visual>
+      <geometry>
+        <box size="0.03 0.004 0.05"/>
+      </geometry>
+      <material name="led_off">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  
+  <!-- Gazebo tag for right LED -->
+  <gazebo reference="led_light_right">
+    <plugin name="led_right_controller" filename="libgazebo_ros_led.so">
+      <frame_name>led_light_right</frame_name>
+      <joy_topic>/joy</joy_topic>
+      <toggle_button>0</toggle_button>
+      <initial_state>false</initial_state>
+    </plugin>
+  </gazebo>
+  
+</robot>
